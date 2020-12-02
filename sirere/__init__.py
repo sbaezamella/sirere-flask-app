@@ -1,17 +1,22 @@
+import os
+
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
+from config import config
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(config_name=None):
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:password@localhost/sistema_registro_renal'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    if config_name is None:
+        config_name = os.getenv('SIRERE_CONFIG', 'development')
+
+    app.config.from_object(config.get(config_name))
 
     db.init_app(app)
 

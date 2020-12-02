@@ -1,5 +1,6 @@
-from sirere import db
 from flask_login import UserMixin
+
+from sirere import db
 
 
 class Usuario(UserMixin, db.Model):
