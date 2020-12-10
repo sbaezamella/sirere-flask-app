@@ -64,7 +64,8 @@ class Examen(db.Model):
 class Diagnostico(db.Model):
     __tablename__ = 'diagnostico'
     id = db.Column(db.Integer, primary_key=True)
-    idFicha = db.Column(db.Integer, nullable=False)
+    idFicha = db.Column(db.Integer, db.ForeignKey(
+        'fichamedica.id'), nullable=False)
     fechaCreacion = db.Column(db.DateTime, nullable=True)
     fechaActualizacion = db.Column(db.DateTime, nullable=True)
     resultado = db.Column(db.Integer, nullable=True)

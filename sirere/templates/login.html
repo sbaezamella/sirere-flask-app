@@ -1,36 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Login</h3>
-    <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}
+<div class="container grid px-6 mx-auto">
+    <form action="/login" method="POST">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-4 flex flex-col">
+            <div class="dark:bg-gray-800">
+                <label class="block text-gray-600 dark:text-gray-300 text-sm mb-2 ml-3" for="rut">RUT</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-600" name="rut" id="rut" type="text" placeholder="RUT">
             </div>
-        {% endif %}
-        {% endwith %}
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="rut" placeholder="RUT" autofocus="">
-                </div>
+            <div class="dark:bg-gray-800">
+                <label class="block text-gray-600 dark:text-gray-300 text-sm font-bold mb-2 ml-3" for="password">Contraseña</label>
+                <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-600 mb-3" id="password" type="password" name="password" placeholder="Contraseña">
             </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Contraseña">
-                </div>
+            <div class="flex items-center justify-between dark:bg-gray-800">
+                <button class="bg-blue hover:bg-blue-dark dark:text-gray-300 font-bold py-2 px-4 rounded" type="submit">Iniciar sesión</button>
             </div>
-            <div class="field">
-                <label class="checkbox">
+            <div class="flex items-center justify-between dark:bg-gray-800">
+                <label class="checkbox dark:text-gray-300">
                     <input type="checkbox">
                     Remember me
                 </label>
             </div>
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
-        </form>
-    </div>
-</div>
+        </div>
+    </form>
+  </div>
 {% endblock %}

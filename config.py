@@ -7,8 +7,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config():
     DEBUG = False
     TESTING = False
-    # SECRET_KEY = os.getenv(
-    #     'SECRET_KEY', 'secret-key-goes-here')
+    SECRET_KEY = os.getenv('SECRET_KEY', 'secret-key-goes-here')
     # Database
     SQLALCHEMY_DATABASE_URI = os.getenv('MYSQL_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
