@@ -11,7 +11,9 @@ Tener Python 3 e instalar el entorno virtal. En este caso se ocupó `virtualenv`
 - Python3
 - virtualenv package
 
-  `$ pip install virtualenv`
+```bash
+pip install virtualenv
+```
 
 ## Variables de entorno
 
@@ -24,18 +26,26 @@ Se necesista crear un archivo `.env` en la carpeta raiz que contenga:
 
 Primero se debe crear el entorno virtual.
 
-    $ virtualenv env
+```bash
+virtualenv env
+```
 
 Luego se activa.
 
-    $ source env/bin/activate
+```bash
+source env/bin/activate
+```
 
 Por último, se instalan los paquetess en el entorno virtual desde el `requirementes.txt`.
 
-    $ pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
 ## Iniciar la aplicación de Flask
 
-    $ python manager.py runserver
+```bash
+python manager.py runserver
+```
 
 La aplicación se encontrará corriendo en `localhost:5000`
