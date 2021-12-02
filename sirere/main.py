@@ -1,11 +1,8 @@
-from datetime import datetime
-
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
-from sirere.models import Usuario, Paciente, FichaMedica, Examen, Diagnostico
 from sirere import db
-
+from sirere.models import Diagnostico, Examen, FichaMedica, Paciente, Usuario
 
 main = Blueprint('main', __name__)
 
@@ -17,13 +14,13 @@ def index():
 
 @main.route('/profile')
 @login_required
-def profile():
+def get_profile():
     return render_template('profile.html', name=current_user.nombre)
 
 
 @main.route('/examenes')
 @login_required
-def examenes():
+def get_examenes():
     examenes = db.session.query(Examen.tipo, Examen.valor, Examen.fechaEmision).join(
         FichaMedica).join(Paciente).join(Usuario).filter(Usuario.nombre == current_user.nombre).all()
 
@@ -32,10 +29,7 @@ def examenes():
 
 @main.route('/diagnosticos')
 @login_required
-def diagnosticos():
+def get_diagnosticos():
     diagnosticos = db.session.query(Diagnostico.categoriaDanio, Diagnostico.resultado, Diagnostico.descripcion, Diagnostico.fechaCreacion).join(
         FichaMedica).join(Paciente).join(Usuario).filter(Usuario.nombre == current_user.nombre).all()
-    print(diagnosticos)
-    print(diagnosticos[0])
-    print(type(diagnosticos[0][2]))
     return render_template('diagnosticos.html', diagnosis_click=True, diagnosticos=diagnosticos)
